@@ -2,6 +2,7 @@
 ## Build glad
 ```
 git submodule update --recursive --remote
+cd glad/
 cmake .
 make
 sudo cp -a include /usr/local/
