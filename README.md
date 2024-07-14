@@ -1,5 +1,4 @@
 # learnopengl
-## Motivative
 One rainy day led me to learn about the Open Graphics Library
 ## Build glad
 ```
