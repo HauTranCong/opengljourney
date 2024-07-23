@@ -2,8 +2,11 @@
     path = glad
     url = https://github.com/Dav1dde/glad.git
     branch = master
-
 [submodule "stb"]
     path = stb
     url = https://github.com/nothings/stb.git
+    branch = master
+[submodule "glm"]
+	path = glm
+	url = https://github.com/g-truc/glm.git
     branch = master
