@@ -25,7 +25,7 @@ float mixValue = 0.5f;
 
 int main()
 {
-    std::cout << "GLSL path: "<< GLSL_PATH << std::endl;
+    // std::cout << "GLSL path: "<< GLSL_PATH << std::endl;
     // glfw: initialize and configure
     // ------------------------------
     if (!glfwInit())
@@ -65,7 +65,6 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     Shader ourShader("Shader/TriangleTransformationsVS.glsl", "Shader/TriangleTransformationsFS.glsl", GLSL_PATH);
-    std::cout << "I can't Can reach here ???\n";
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
@@ -188,8 +187,8 @@ int main()
 
         // create transformations
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        transform = glm::translate(transform, glm::vec3(0.3f, -0.3f, 0.0f));
 
         // render container
         ourShader.use();

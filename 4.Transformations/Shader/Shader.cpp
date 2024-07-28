@@ -10,8 +10,8 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* gls
     std::string vertexPathToOpen = std::string(glslPath) + '/' + vertexPath;
     std::string fragmentPathToOpen = std::string(glslPath) + '/' + fragmentPath;
 
-    std::cout << "vertexPathToOpen: " << vertexPathToOpen << std::endl;
-    std::cout << "fragmentPathToOpen: " << fragmentPathToOpen << std::endl;
+    // std::cout << "vertexPathToOpen: " << vertexPathToOpen << std::endl;
+    // std::cout << "fragmentPathToOpen: " << fragmentPathToOpen << std::endl;
     
     std::ifstream vShaderFile;
     std::ifstream fShaderFile;
