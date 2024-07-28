@@ -14,23 +14,11 @@ file(GLOB SHADER_SOURCE
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../
-    ${CMAKE_CURRENT_SOURCE_DIR}/../glm/
-    )
+)
 
 # Link libraries to all targets
 link_libraries(
     glfw 
-    GLU 
-    GL 
-    Xrandr 
-    Xxf86vm 
-    Xi 
-    Xinerama 
-    X11
-    pthread 
-    rt 
-    dl
 )
 
 file(GLOB SOURCE_FILES *.cpp)
@@ -43,7 +31,7 @@ foreach(SOURCE_PATH ${SOURCE_FILES})
         get_filename_component(GLSL_NAME ${GLSL_PATH} NAME_WE)
         string(REPLACE "VS" "" REMOVE_VS_FROM_GLSL_NAME ${GLSL_NAME})
         if(${REMOVE_VS_FROM_GLSL_NAME} STREQUAL ${EXECUTABLE_NAME})
-            # message(CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR})
+            # message(D_GLSL_PATH=${CMAKE_CURRENT_SOURCE_DIR})
             ADD_DEFINITIONS(-D_GLSL_PATH_="${CMAKE_CURRENT_SOURCE_DIR}")
         endif()
     endforeach(GLSL_PATH ${GLSL_FILES})

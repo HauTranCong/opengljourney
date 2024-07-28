@@ -9,14 +9,4 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     glfw 
-    GLU 
-    GL 
-    Xrandr 
-    Xxf86vm 
-    Xi 
-    Xinerama 
-    X11
-    pthread 
-    rt 
-    dl
 )

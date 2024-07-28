@@ -10,6 +10,9 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* gls
     std::string vertexPathToOpen = std::string(glslPath) + '/' + vertexPath;
     std::string fragmentPathToOpen = std::string(glslPath) + '/' + fragmentPath;
 
+    std::cout << "vertexPathToOpen: " << vertexPathToOpen << std::endl;
+    std::cout << "fragmentPathToOpen: " << fragmentPathToOpen << std::endl;
+    
     std::ifstream vShaderFile;
     std::ifstream fShaderFile;
     // ensure ifstream objects can throw exceptions:
@@ -24,12 +27,15 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* gls
         // read file's buffer contents into streams
         vShaderStream << vShaderFile.rdbuf();
         fShaderStream << fShaderFile.rdbuf();
+
         // close file handlers
         vShaderFile.close();
         fShaderFile.close();
         // convert stream into string
         vertexCode   = vShaderStream.str();
+        // std::cout << "vertexCode: " << vertexCode << std::endl;
         fragmentCode = fShaderStream.str();
+        // std::cout << "fragmentCode: " << fragmentCode << std::endl;
     }
     catch (std::ifstream::failure& e)
     {
@@ -38,14 +44,13 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* gls
     const char* vShaderCode = vertexCode.c_str();
     const char * fShaderCode = fragmentCode.c_str();
     // 2. compile shaders
-    unsigned int vertex, fragment;
     // vertex shader
-    vertex = glCreateShader(GL_VERTEX_SHADER);
+    unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex, 1, &vShaderCode, NULL);
     glCompileShader(vertex);
     checkCompileErrors(vertex, "VERTEX");
     // fragment Shader
-    fragment = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragment = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragment, 1, &fShaderCode, NULL);
     glCompileShader(fragment);
     checkCompileErrors(fragment, "FRAGMENT");

@@ -20,16 +20,6 @@ include_directories(
 # Link libraries to all targets
 link_libraries(
     glfw 
-    GLU 
-    GL 
-    Xrandr 
-    Xxf86vm 
-    Xi 
-    Xinerama 
-    X11
-    pthread 
-    rt 
-    dl
 )
 
 file(GLOB SOURCE_FILES *.cpp)

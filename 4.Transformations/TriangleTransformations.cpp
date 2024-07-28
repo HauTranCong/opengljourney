@@ -25,10 +25,15 @@ float mixValue = 0.5f;
 
 int main()
 {
-    // std::cout << "GLSL path: "<< GLSL_PATH << std::endl;
+    std::cout << "GLSL path: "<< GLSL_PATH << std::endl;
     // glfw: initialize and configure
     // ------------------------------
-    glfwInit();
+    if (!glfwInit())
+    {
+        std::cout << "Failed to initialize GLFW" << std::endl;
+        return -1;
+    }
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -57,11 +62,10 @@ int main()
         return -1;
     }
 
-
-   // build and compile our shader program
+    // build and compile our shader program
     // ------------------------------------
-    Shader ourShader("Shader/TriangleWithMoreAttributesVS.glsl", "Shader/TriangleWithMoreAttributesFS.glsl", GLSL_PATH);
-
+    Shader ourShader("Shader/TriangleTransformationsVS.glsl", "Shader/TriangleTransformationsFS.glsl", GLSL_PATH);
+    std::cout << "I can't Can reach here ???\n";
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
