@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.1.0)
 
 project(LearnOpenGL)
 
-add_subdirectory(glad) 
-add_subdirectory(glfw) 
+add_subdirectory(glad ${CMAKE_CURRENT_SOURCE_DIR}/glad) 
+add_subdirectory(glfw ${CMAKE_CURRENT_SOURCE_DIR}/glfw) 
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
