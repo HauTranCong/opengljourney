@@ -69,10 +69,10 @@ int main()
     // ------------------------------------------------------------------
     float vertices[] = {
         // positions          // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
-         0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left 
+         0.75f,  0.75f, 0.0f,   1.0f, 1.0f, // top right
+         0.75f, -0.75f, 0.0f,   1.0f, 0.0f, // bottom right
+        -0.75f, -0.75f, 0.0f,   0.0f, 0.0f, // bottom left
+        -0.75f,  0.75f, 0.0f,   0.0f, 1.0f  // top left 
     };
 
     unsigned int indices[] = {
@@ -102,9 +102,9 @@ int main()
     
     // load and create a texture 
     // -------------------------
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    unsigned int texture1;
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
     // set the texture wrapping parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -157,7 +157,7 @@ int main()
     stbi_image_free(data);
 
     ourShader.use();
-    ourShader.setInt("texture", 0);
+    ourShader.setInt("texture1", 0);
     ourShader.setInt("texture2", 1);
     // render loop
     // -----------
@@ -174,10 +174,10 @@ int main()
 
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
-
+        
          // set the texture mix value in the shader
         ourShader.setFloat("mixValue", mixValue);
 
@@ -199,8 +199,6 @@ int main()
         // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
         // ourShader.setMat4("projection", projection);
 
-        // set the texture mix value in the shader
-        ourShader.setFloat("mixValue", mixValue);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time 
@@ -232,17 +230,15 @@ void processInput(GLFWwindow *window)
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
     {
-        mixValue += 0.1f; // change this value accordingly (might be too slow or too fast based on system hardware)
+        mixValue += 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
         if(mixValue >= 1.0f)
             mixValue = 1.0f;
-        std::cout << "Key-Up is pressed!\n";
     }
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
     {
-        mixValue -= 0.1f; // change this value accordingly (might be too slow or too fast based on system hardware)
+        mixValue -= 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
         if (mixValue <= 0.0f)
             mixValue = 0.0f;
-        std::cout << "Key-Down is pressed!\n";
     }
 }
 
