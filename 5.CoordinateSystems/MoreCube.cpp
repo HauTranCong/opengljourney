@@ -250,7 +250,8 @@ int main()
         glm::mat4 view          = glm::mat4(1.0f);
         glm::mat4 projection    = glm::mat4(1.0f);
         // model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-        view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        // view  = glm::translate(view, glm::vec3(sin(glfwGetTime()), 0.0f, (float)sin(glfwGetTime()) * -10.0f >= -3.0f ? -3.0f : (float)sin(glfwGetTime()) * -10.0f));
+        view  = glm::translate(view, glm::vec3(0.0f, 0.0f, cos(glfwGetTime()) * -3.0f));
         projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         // retrieve the matrix uniform locations
         // unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
@@ -262,7 +263,7 @@ int main()
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
         // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
         // ourShader.setMat4("projection", projection);
-        for(unsigned int i = 0; i < 10; i++)
+        for(unsigned int i = 1; i <= 10; i++)
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, cubePositions[i]);
